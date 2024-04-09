@@ -1,0 +1,47 @@
+services:
+  ftp-server:
+    image: garethflowers/ftp-server
+    environment:
+      - FTP_PASS=ftppassword
+      - FTP_USER=ftpuser
+    ports:
+      - '20-21:20-21/tcp'
+      - '40000-40009:40000-40009/tcp'
+    volumes:
+      - ./ftp-server/data:/home/ftpuser
+
+  backup-service:
+    image: alpine:latest
+    depends_on:
+      - ftp-server
+    volumes:
+      - backup_data:/backup
+      - ./backupservice/backup-script.sh:/backup-script.sh
+    environment:
+      FTP_SERVER: ftp-server
+      FTP_USERNAME: ftpuser
+      FTP_PASSWORD: ftppassword
+    entrypoint:
+      - '/bin/sh'
+      - '-c'
+      - |
+        apk add --no-cache lftp
+        chmod +x /backup-script.sh
+        # Run the script immediately when the container starts
+        /backup-script.sh
+        # Then, start the cron daemon to schedule the backup script periodically (every 10 minutes)
+        echo "*/10 * * * * /backup-script.sh" >> /etc/crontabs/root
+        crond -l 2 -f
+
+  webui:
+    image: webui
+    build:
+      context: webui
+      dockerfile: Dockerfile
+    volumes:
+      - backup_data:/backup_data
+    ports:
+      - '8080:8080'
+
+volumes:
+  backup_data:

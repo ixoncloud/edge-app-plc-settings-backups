@@ -1,0 +1,5 @@
+services:
+  webui:
+    volumes:
+      - ./webui:/app
+    command: "tail -F /dev/null"

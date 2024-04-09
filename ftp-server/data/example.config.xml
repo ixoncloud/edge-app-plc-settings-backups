@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowPackerConfiguration>
+    <!-- General settings for the flow packer machine -->
+    <GeneralSettings>
+        <MachineName>FP-2000</MachineName>
+        <OperatorID>operator123</OperatorID>
+        <Location>Plant1</Location>
+    </GeneralSettings>
+
+    <!-- Product settings for the item to be packed -->
+    <ProductSettings>
+        <ProductName>Chocolate Bar</ProductName>
+        <ProductCode>CB100</ProductCode>
+        <Dimensions>
+            <Length>150</Length>
+            <Width>75</Width>
+            <Height>10</Height>
+        </Dimensions>
+        <Weight>50</Weight> <!-- Weight in grams -->
+    </ProductSettings>
+
+    <!-- Packaging material settings -->
+    <PackagingMaterial>
+        <Type>Plastic</Type>
+        <Thickness>0.02</Thickness> <!-- Thickness in mm -->
+    </PackagingMaterial>
+
+    <!-- Machine operation settings -->
+    <OperationSettings>
+        <SealingTemperature>120</SealingTemperature> <!-- Temperature in Celsius -->
+        <PackingSpeed>30</PackingSpeed> <!-- Packs per minute -->
+        <SealingTime>2</SealingTime> <!-- Time in seconds -->
+    </OperationSettings>
+
+    <!-- Error handling and diagnostics -->
+    <ErrorHandling>
+        <AutoStopOnFault>True</AutoStopOnFault>
+        <ErrorLogPath>/logs/errorLog.txt</ErrorLogPath>
+    </ErrorHandling>
+</FlowPackerConfiguration>

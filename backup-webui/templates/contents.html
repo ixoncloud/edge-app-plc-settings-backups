@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Configuration backup</title>
+    <link type="text/css" rel="stylesheet" href="/static/style.css" />
+</head>
+
+
+<body>
+    <nav class="background" role="navigation">
+        <a href="/" class="brand">Backup overview</a>
+    </nav>
+
+    <div id="docker">
+        <h1 class="container">Backup {{ timestamp }}</h1>
+        <section class="container">
+            <pre><code>{{ contents }}</code></pre>
+        </section>
+    </div>
+</body>
+
+</html>
