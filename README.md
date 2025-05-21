@@ -2,10 +2,6 @@
 
 This project showcases how to use FTP to back up machine configurations from any FTP server (e.g., on a PLC) to the IXON SecureEdge Pro device. The provided FTP server container is included for demonstration purposes; in production environments, an FTP server on the machine should be used instead.
 
-## Prerequisites
-
-Ensure your environment is properly set up by following this guide: [Running custom Docker applications on the SecureEdge Pro](https://support.ixon.cloud/hc/en-us/articles/14231117531420-Running-custom-Docker-applications-on-the-SecureEdge-Pro).
-
 ## Local Development
 
 docker-compose.yml is provided for local development.
@@ -20,7 +16,19 @@ This application consists of two or three containers:
 
 ## Steps to Deploy
 
-### 1. Build and Push the Containers
+### Prerequisites
+
+Ensure your environment is properly set up by following this guide: [Running custom Docker applications on the SecureEdge Pro](https://support.ixon.cloud/hc/en-us/articles/14231117531420-Running-custom-Docker-applications-on-the-SecureEdge-Pro).
+
+### 1. Download and adjust to your SecureEdge Pro
+
+Download the code of this project and change the IP address in the following files to the LAN IP address of your SecureEge Pro:
+
+- buildkitd-secure-edge-pro.toml
+- build_and_push_containers.sh
+- build_and_push_containers.cmd
+
+### 2. Build and Push the Containers
 
 Ensure you have the correct build environment configured:
 
@@ -50,7 +58,7 @@ For Windows:
 build_and_push_containers.cmd
 ```
 
-### 2. Set Up the Containers on SecureEdge Pro
+### 3. Set Up the Containers on SecureEdge Pro
 
 - Access the local web interface of the SecureEdge Pro.
 
